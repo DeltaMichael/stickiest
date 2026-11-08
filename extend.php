@@ -24,6 +24,7 @@ use HuseyinFiliz\Stickiest\Listener\CreatePostWhenStickiest;
 use HuseyinFiliz\Stickiest\Listener\CreatePostWhenUnstickiest;
 use HuseyinFiliz\Stickiest\Listener\SaveStickyState;
 use HuseyinFiliz\Stickiest\Post\DiscussionStickiestPost;
+use HuseyinFiliz\Stickiest\Search\StickyFilter;
 use HuseyinFiliz\Stickiest\Search\StickySearchMutator;
 
 return [
@@ -64,6 +65,7 @@ return [
 
     // Sıralama - super sticky en üste
     (new Extend\SearchDriver(DatabaseSearchDriver::class))
+        ->addFilter(DiscussionSearcher::class, StickyFilter::class)
         ->addMutator(DiscussionSearcher::class, StickySearchMutator::class),
 
     // Ayarlar
